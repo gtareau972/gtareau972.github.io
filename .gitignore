@@ -2,3 +2,5 @@ site/
 .cache/
 .venv/
 .DS_Store
+.venv/
+.DS_Store
