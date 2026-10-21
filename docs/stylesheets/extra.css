@@ -1,0 +1,145 @@
+/* ===== Défilement fluide ===== */
+html { scroll-behavior: smooth; }
+
+/* ===== Hero de l'accueil ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 2.5rem;
+  padding: 3.5rem 2.5rem 3rem;
+  border-radius: 1rem;
+  color: #fff;
+  background: linear-gradient(120deg, #00695c, #00897b, #26a69a, #00796b);
+  background-size: 300% 300%;
+  animation: hero-gradient 14s ease infinite;
+}
+.hero::after {               /* halo décoratif */
+  content: "";
+  position: absolute;
+  inset: -40% -10% auto auto;
+  width: 28rem; height: 28rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.18), transparent 65%);
+  pointer-events: none;
+}
+.md-typeset .hero h1 {
+  margin: 0 0 .4rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 2.4em;
+  letter-spacing: -.01em;
+}
+.hero__role { font-size: 1.15em; opacity: .95; margin: 0 0 1rem; }
+.hero__typed {
+  display: inline-block;
+  min-height: 1.6em;
+  font-weight: 600;
+  border-right: 2px solid #fff;
+  padding-right: .15em;
+  animation: caret 1s step-end infinite;
+}
+.md-typeset .hero .md-button {
+  margin: 1.2rem .6rem 0 0;
+  color: #fff;
+  border-color: rgba(255,255,255,.8);
+  transition: transform .2s ease, background-color .2s ease, color .2s ease;
+}
+.md-typeset .hero .md-button:hover { transform: translateY(-2px); }
+.md-typeset .hero .md-button--primary {
+  background: #fff;
+  color: #00695c;
+  border-color: #fff;
+}
+.md-typeset .hero .md-button--primary:hover { background: #e0f2f1; color: #004d40; }
+
+@keyframes hero-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes caret { 50% { border-color: transparent; } }
+
+/* ===== Compteurs ===== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 1rem;
+  margin: 0 0 2.5rem;
+}
+.stat {
+  padding: 1.2rem 1rem;
+  text-align: center;
+  border-radius: .75rem;
+  background: var(--md-code-bg-color);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.stat:hover { transform: translateY(-4px); box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.12); }
+.stat__value {
+  display: block;
+  font-size: 2.1em;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--md-primary-fg-color);
+  font-variant-numeric: tabular-nums;
+}
+.stat__label { font-size: .8em; opacity: .75; }
+
+/* ===== Cartes : effet de survol ===== */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid.cards > ol > li {
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid.cards > ol > li:hover {
+  transform: translateY(-4px);
+  border-color: var(--md-primary-fg-color);
+  box-shadow: 0 .6rem 1.6rem rgba(0,0,0,.12);
+}
+
+/* ===== Badges de compétences ===== */
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: .5rem 0 1.5rem; }
+.chip {
+  padding: .3rem .8rem;
+  border-radius: 999px;
+  font-size: .78em;
+  border: 1px solid var(--md-primary-fg-color);
+  color: var(--md-primary-fg-color);
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+.chip:hover { background: var(--md-primary-fg-color); color: var(--md-primary-bg-color); transform: scale(1.05); }
+
+/* ===== Frise chronologique (CV) ===== */
+.timeline { position: relative; margin-left: .6rem; padding-left: 1.8rem; border-left: 2px solid var(--md-primary-fg-color--light, #4db6ac); }
+.md-typeset .timeline h3 { position: relative; margin-top: 2rem; }
+.md-typeset .timeline h3::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.8rem - 7px);
+  top: .35em;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--md-primary-fg-color);
+  box-shadow: 0 0 0 4px var(--md-default-bg-color);
+  transition: transform .25s ease;
+}
+.md-typeset .timeline h3:hover::before { transform: scale(1.4); }
+
+/* ===== Apparition au défilement ===== */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* ===== Accessibilité : moins d'animations si demandé ===== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero, .hero__typed { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .stat, .chip, .md-typeset .grid.cards > ul > li { transition: none; }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 44.9375em) {
+  .hero { padding: 2.2rem 1.4rem 2rem; }
+  .md-typeset .hero h1 { font-size: 1.8em; }
+}
+
+/* L'accueil n'affiche pas les boutons « voir / modifier » qui rétrécissent le bandeau */
+.md-content__inner:has(.hero) > .md-content__button { display: none; }
