@@ -12,6 +12,9 @@ Les procédures (mise à jour, sauvegarde, ajout de poller, bascule, MBI) dépen
 
 En HA, le cluster est piloté par **Pacemaker et Corosync** ; un poller peut jouer le rôle de quorum device.
 
+!!! info "Où en sont les versions ?"
+    La **26.10** est sortie le 16 octobre 2026 ; son installation *unattended* cible RHEL / AlmaLinux / Oracle Linux 9 et 10, et Debian 13. La branche **25.10** continue de recevoir des correctifs (centreon-web 25.10.18 au 30/09/2026). Avant une montée de version, consulter la [politique de cycle de vie](https://docs.centreon.com/docs/25.10/releases/lifecycle/) et la [matrice de montée de version](https://docs.centreon.com/docs/25.10/upgrade/upgrade-matrix/), et appliquer les procédures propres à la HA.
+
 !!! warning "Réplication hors HA"
     La documentation 25.10 ne décrit pas d'architecture « central + deux bases master/slave » hors HA. S'appuyer sur la documentation MariaDB/MySQL et sur les principes de réplication décrits dans les pages HA.
 

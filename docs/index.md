@@ -39,7 +39,7 @@ Plus de 10 ans à auditer, concevoir et migrer des plateformes de supervision po
 
     ---
 
-    Nommage, templates, seuils, notifications et architectures Centreon 25.10.
+    Nommage, templates, seuils, architectures, agent CMA, intégrations ITSM et IA (MCP).
 
     [:octicons-arrow-right-24: Lire le guide](bonnes-pratiques/index.md)
 
@@ -70,7 +70,7 @@ Plus de 10 ans à auditer, concevoir et migrer des plateformes de supervision po
 
 **Modules et architecture Centreon**
 <div class="chips">
-<span class="chip">MBI</span><span class="chip">BAM</span><span class="chip">MAP</span><span class="chip">Haute disponibilité</span><span class="chip">Pollers / Remote</span><span class="chip">Broker · Gorgone</span>
+<span class="chip">MBI</span><span class="chip">BAM</span><span class="chip">MAP</span><span class="chip">Haute disponibilité</span><span class="chip">Pollers / Remote</span><span class="chip">Broker · Gorgone</span><span class="chip">Monitoring Agent (CMA)</span><span class="chip">Open Tickets</span><span class="chip">Stream Connectors</span><span class="chip">MCP (IA)</span>
 </div>
 
 **Automatisation et intégration**

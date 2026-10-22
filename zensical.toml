@@ -25,12 +25,16 @@ nav = [
     { "Organisation des templates" = "bonnes-pratiques/templates.md" },
     { "Seuils et notifications" = "bonnes-pratiques/seuils-et-notifications.md" },
     { "Architectures Centreon" = "bonnes-pratiques/architectures.md" },
+    { "Centreon Monitoring Agent" = "bonnes-pratiques/agent-cma.md" },
+    { "Intégrations" = "bonnes-pratiques/integrations.md" },
+    { "Centreon et l'IA (MCP)" = "bonnes-pratiques/mcp-ia.md" },
   ] },
   { "Retours d'expérience" = [
     "rex/index.md",
     { "Modèle de REX" = "rex/modele.md" },
   ] },
   { "Réalisations" = "realisations/index.md" },
+  { "Ressources" = "ressources.md" },
 ]
 
 extra_css = ["stylesheets/extra.css"]

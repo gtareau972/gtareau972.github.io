@@ -12,3 +12,6 @@ Ces pages décrivent la méthode que j'applique sur des plateformes **Centreon 2
 | [Organisation des templates](templates.md) | Hériter des templates éditeur au lieu de les modifier |
 | [Seuils et notifications](seuils-et-notifications.md) | Un seuil = une action ; séparer seuil, confirmation et notification |
 | [Architectures Centreon](architectures.md) | Ce qui change selon l'architecture, du standalone à la HA 4 nœuds |
+| [Centreon Monitoring Agent](agent-cma.md) | L'agent gRPC chiffré qui remplace NRPE et NSClient++ |
+| [Intégrations](integrations.md) | ITSM (Open Tickets), stream connectors et canaux de notification |
+| [Centreon et l'IA (MCP)](mcp-ia.md) | Interroger la supervision depuis un assistant IA, en sécurité |
