@@ -47,3 +47,9 @@ La criticité métier d'un serveur doit surtout guider **les horaires, les desti
 3. Tester le profil sur quelques hôtes représentatifs.
 4. Contrôler les valeurs héritées et les commandes effectives.
 5. Déployer progressivement et supprimer les alertes sans action associée.
+
+## Sources
+
+- [Macros (25.10)](https://docs.centreon.com/fr/docs/25.10/monitoring/basic-objects/macros/)
+- [Concepts de notification (25.10)](https://docs.centreon.com/docs/25.10/alerts-notifications/notif-concept/)
+- Seuils de départ : retours d'expérience personnels, à ajuster pour chaque contexte

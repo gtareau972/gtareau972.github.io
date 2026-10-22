@@ -84,8 +84,12 @@ Puis contrôler dans **Supervision > Statut des ressources** que les services de
 - **Plugins maison** : CMA sait exécuter des plugins Bash, Perl, Python ou PowerShell compatibles Nagios, ce qui facilite la reprise de l'existant.
 - **Nommage** : appliquer la même convention qu'ailleurs, en héritant des templates des connecteurs CMA (voir [Organisation des templates](templates.md)).
 
-## Documentation officielle (25.10)
+## Sources
+
+*Consultées le 22 octobre 2026.*
 
 - [Centreon Monitoring Agent (sommaire)](https://docs.centreon.com/docs/25.10/category/centreon-monitoring-agent/)
 - [Mise en place de l'environnement de l'agent](https://docs.centreon.com/docs/25.10/cma/cma-setup/)
 - [Code source (centreon-collect)](https://github.com/centreon/centreon-collect)
+- [Introduction au Centreon Monitoring Agent](https://docs.centreon.com/docs/cma)
+- [Centreon – Téléchargements](https://download.centreon.com/fr/), onglet *Agent* : commandes d'installation, versions et systèmes supportés

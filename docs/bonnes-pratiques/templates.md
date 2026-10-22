@@ -38,7 +38,7 @@ Conséquence : éviter de définir les mêmes paramètres dans plusieurs branche
 | Service concret | Exception justifiée pour cette instance |
 | Template d'hôte / hôte | Paramètres de connexion et caractéristiques communes |
 
-## Documentation officielle (25.10)
+## Sources
 
 - [Templates de service](https://docs.centreon.com/fr/docs/25.10/monitoring/basic-objects/services-templates/)
 - [Templates d'hôte](https://docs.centreon.com/fr/docs/25.10/monitoring/basic-objects/hosts-templates/)

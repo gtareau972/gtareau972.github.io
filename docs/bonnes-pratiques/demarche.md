@@ -57,3 +57,11 @@ Avant la mise en production, valider le chemin complet de l'alerte : notificatio
 ## 7. Faire vivre la configuration
 
 Revoir régulièrement les alertes qui ne déclenchent aucune action : soit le seuil est mal placé, soit l'alerte doit disparaître.
+
+## Sources
+
+*Consultées le 22 octobre 2026.*
+
+- [Centreon – Téléchargements](https://download.centreon.com/fr/), onglet *Connecteurs* : nombre et catégories de connecteurs
+- [Monitoring Connectors – introduction](https://docs.centreon.com/pp/integrations/plugin-packs/getting-started/introduction/)
+- [Centreon Monitoring Agent (25.10)](https://docs.centreon.com/docs/25.10/category/centreon-monitoring-agent/)

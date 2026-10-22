@@ -1,6 +1,6 @@
 # Ressources officielles
 
-Les liens que j'utilise au quotidien, vérifiés le **22 octobre 2026**.
+Les liens que j'utilise au quotidien, vérifiés le **22 octobre 2026**. Chaque page de bonnes pratiques indique aussi ses propres sources en bas de page.
 
 !!! info "Versions"
     La documentation Centreon affiche par défaut la dernière version (**26.10**, sortie le 16 octobre 2026). Pour une plateforme en 25.10, utiliser les liens contenant `/docs/25.10/`.
@@ -49,3 +49,10 @@ Ces numéros évoluent vite : se référer à l'onglet *Sources* de la page de t
 - [The Watch](https://thewatch.centreon.com/) : communauté Centreon
 - [Centreon sur GitHub](https://github.com/centreon)
 - [centreon-collect](https://github.com/centreon/centreon-collect) : Engine, Broker et agent CMA
+
+## Sources de cette page
+
+*Consultées le 22 octobre 2026.*
+
+- [Centreon – Téléchargements](https://download.centreon.com/fr/) : contenu des six onglets et versions publiées (onglet *Sources*)
+- [Liens officiels Centreon 25.10](https://docs.centreon.com/docs/25.10/) : documentation de la version exploitée

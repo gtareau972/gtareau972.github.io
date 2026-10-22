@@ -26,7 +26,9 @@ En HA, le cluster est piloté par **Pacemaker et Corosync** ; un poller peut jou
 | MBI | Reporting | Serveur de reporting dédié, ETL, impact sur la base de supervision |
 | MAP | Cartographie | Serveur MAP, compatibilité de version |
 
-## Documentation officielle (25.10)
+## Sources
+
+*Consultées le 22 octobre 2026.*
 
 - [Architectures](https://docs.centreon.com/fr/docs/25.10/installation/architectures/)
 - [Centreon HA](https://docs.centreon.com/fr/docs/25.10/installation/installation-of-centreon-ha/centreon-ha/)
@@ -34,3 +36,6 @@ En HA, le cluster est piloté par **Pacemaker et Corosync** ; un poller peut jou
 - [Guide d'exploitation HA](https://docs.centreon.com/fr/docs/25.10/administration/centreon-ha/operating-guide/)
 - [Mise à jour de la HA](https://docs.centreon.com/fr/docs/25.10/category/updating-centreon-ha/)
 - [BAM](https://docs.centreon.com/fr/docs/25.10/service-mapping/introduction/) · [MBI](https://docs.centreon.com/fr/docs/25.10/reporting/introduction/) · [MAP](https://docs.centreon.com/fr/docs/25.10/category/graphical-views-maps/)
+- [Centreon – Téléchargements](https://download.centreon.com/fr/), onglets *Paquets* et *Sources* : version 26.10, systèmes supportés et dernières versions 25.10
+- [Politique de cycle de vie (25.10)](https://docs.centreon.com/docs/25.10/releases/lifecycle/)
+- [Matrice de montée de version (25.10)](https://docs.centreon.com/docs/25.10/upgrade/upgrade-matrix/)

@@ -70,8 +70,12 @@ Configuration côté client MCP :
 - « Résume l'état des services de la base de données de production. »
 - « Acquitte l'alerte disque de srv-app-01 avec le commentaire : intervention planifiée, ticket INC0123. »
 
-## Liens
+## Sources
+
+*Consultées le 22 octobre 2026.*
 
 - [Serveur MCP (CentreonLabs, GitHub)](https://github.com/CentreonLabs/centreon-mcp)
 - [Documentation développeur Centreon : serveur MCP](https://docs.centreon.com/docs/developer/mcp-server/)
 - [Jetons d'API (25.10)](https://docs.centreon.com/docs/25.10/api/api-tokens/)
+- [Serveur MCP (centreon, GitHub)](https://github.com/centreon/centreon-mcp)
+- [Centreon – Téléchargements](https://download.centreon.com/fr/), onglet *MCP* : prérequis, variables d'environnement et outils de la version bêta

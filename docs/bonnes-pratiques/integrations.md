@@ -49,9 +49,11 @@ Adossés au flux **BBDO** du Broker et à un framework **Lua**, les stream conne
 - Garder la séparation **seuil / confirmation / notification** (voir [Seuils et notifications](seuils-et-notifications.md)).
 - Les notifications suivent le moteur Centreon : contacts, périodes et escalades. Une notification n'est envoyée qu'après passage en état HARD, puis à chaque intervalle de notification tant que le problème persiste.
 
-## Documentation officielle (25.10)
+## Sources
+
+*Consultées le 22 octobre 2026.*
 
 - [Open Tickets](https://docs.centreon.com/docs/25.10/alerts-notifications/ticketing/)
 - [Stream connectors (Data Analytics)](https://docs.centreon.com/docs/25.10/integrations/data-analytics/data-analytics-overview/)
 - [Concepts de notification](https://docs.centreon.com/docs/25.10/alerts-notifications/notif-concept/)
-- [Catalogue complet des intégrations](https://download.centreon.com/fr/)
+- [Centreon – Téléchargements](https://download.centreon.com/fr/), onglet *Intégrations* : catalogue des providers, connecteurs et plugins
