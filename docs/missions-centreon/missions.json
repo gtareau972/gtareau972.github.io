@@ -1,0 +1,124 @@
+{
+  "updated": "2026-11-28",
+  "profile": {
+    "tjmTarget": 500,
+    "zones": ["Île-de-France", "Full remote France", "Autres régions", "Luxembourg", "International"],
+    "remote": "Peu importe",
+    "duration": "Indifférente",
+    "roles": ["expert", "cdp", "audit", "migration"],
+    "cvUrl": "https://gtareau972.github.io/cv/"
+  },
+  "missions": [
+    {
+      "id": "asap-cdp", "t": "Chef de projet MOE Outillage d'exploitation et Supervision", "co": "ASAP Technologies (ESN)",
+      "loc": "Île-de-France", "tt": "Partiel", "tjm": "460–490 €/j", "tmax": 490, "dur": "3 ans",
+      "pub": "2026-11-02", "added": "2026-11-25", "ver": true, "role": "cdp", "techPts": 38, "clientPts": 2.5,
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/ingenieur-dexploitation/chef-de-projet-moe-outillage-dexploitation-et-supervision-1", "src": "Free-Work",
+      "stack": "Centreon, ITIL, MariaDB, PostgreSQL, Linux, Windows Server, VMware, CMDB",
+      "pros": ["Pilotage et coordination d'outillage de supervision Centreon : cœur de votre profil", "ITIL, MariaDB, pilotage de prestataires et TMA", "Expériences GRDF, Dior et Eiffage directement transposables"],
+      "gaps": ["TJM affiché sous votre cible de 500 €/j", "Annonce publiée il y a plus de 3 semaines"],
+      "qs": ["Le poste est-il toujours ouvert ?", "Client final et secteur ?", "TJM possible à 500 € ou plus ?"],
+      "pitch": "J'ai piloté la migration Shinken vers Centreon chez GRDF (coordination des intervenants, Go/No-Go, suivi financier) et la refonte Centreon MAP/MBI/BAM chez Dior. Je mène actuellement chez Eiffage la migration vers Centreon Cloud (5 000 hôtes, 26 000 services, OpenTicket vers EasyVista)."
+    },
+    {
+      "id": "asap-exp", "t": "Expert Centreon", "co": "ASAP Technologies (ESN)",
+      "loc": "Île-de-France", "tt": "Non précisé", "tjm": "400–550 €/j", "tmax": 550, "dur": "3 ans",
+      "pub": "2026-09-28", "added": "2026-11-25", "ver": true, "role": "expert", "techPts": 34, "clientPts": 2.5,
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/expert-seo-consultant-referencement/expert-centreon-27", "src": "Free-Work",
+      "stack": "Centreon, SNMP/MIB, Python, Perl, PHP, VBS, MariaDB, PostgreSQL, Oracle, VMware, ITIL, GLPI",
+      "pros": ["Centreon, SNMP, Python, Perl, MariaDB, VMware, ITIL", "GLPI déjà intégré à Centreon (Docaposte)", "Fourchette de TJM compatible avec votre cible"],
+      "gaps": ["PHP, VBS et base de données Oracle absents du CV", "Annonce publiée il y a 2 mois"],
+      "qs": ["L'annonce est-elle encore active ?", "Plutôt MCO ou build ?", "Version de Centreon et périmètre ?"],
+      "pitch": "Expert Centreon (Central, Pollers, Remote, HA, MAP, MBI, BAM), je développe des sondes en Bash, Python et Perl et j'automatise via CLAPI et l'API REST. J'ai intégré Centreon à GLPI, iTop et Jira, et je mène actuellement chez Eiffage une migration vers Centreon Cloud (5 000 hôtes)."
+    },
+    {
+      "id": "hays", "t": "DevOps / Expert Centreon", "co": "HAYS France (cabinet)",
+      "loc": "Lille", "tt": "Non précisé", "tjm": "Non communiqué", "tmax": 0, "dur": "1 an",
+      "pub": "2026-11-24", "added": "2026-11-25", "ver": false, "role": "expert", "techPts": 32, "clientPts": 2.5,
+      "url": "https://www.free-work.com/fr/tech-it", "src": "Free-Work (page d'accueil)",
+      "stack": "Centreon, administration Linux, DevOps, templatisation, industrialisation",
+      "pros": ["MCO, design, templatisation et évolution de Centreon", "Plateforme d'observabilité à grande échelle", "Annonce récente"],
+      "gaps": ["Volet DevOps à préciser", "Page détaillée non consultée : à vérifier"],
+      "qs": ["TJM ?", "Rythme de télétravail ?", "Version de Centreon et usage HA/MBI/BAM ?"],
+      "pitch": "Architecte supervision Centreon depuis plus de 10 ans, j'ai mené le MCO et l'évolution de plateformes à grande échelle (SNCF, GRDF) et je pilote actuellement chez Eiffage la migration vers Centreon Cloud de 5 000 hôtes, avec rationalisation des templates et des Plugin Packs."
+    },
+    {
+      "id": "odh", "t": "Expert outillage monitoring", "co": "ODHCOM – Freelancerepublik (cabinet)",
+      "loc": "Île-de-France", "tt": "Hybride", "tjm": "Non communiqué", "tmax": 0, "dur": "12 mois",
+      "pub": "2026-11-20", "added": "2026-11-25", "ver": true, "role": "expert", "techPts": 26, "clientPts": 2.5,
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/expert-seo-consultant-referencement/expert-outillage-monitoring", "src": "Free-Work",
+      "stack": "Centreon, Prometheus, Grafana, Alertmanager, Linux, Windows, Ansible",
+      "pros": ["Centreon, Prometheus et Alertmanager présents sur votre CV", "Secteur énergie (comme GRDF)"],
+      "gaps": ["Grafana et Ansible demandés", "Dynatrace, Kubernetes et AWS appréciés"],
+      "qs": ["TJM ? (une annonce proche affichait 600–650 €/j)", "Part de Centreon dans la stack ?", "Démarrage ?"],
+      "pitch": "Expert Centreon (HA, MAP, MBI, BAM), j'ai aussi travaillé avec Prometheus et Alertmanager chez Docaposte. J'ai piloté la migration Shinken vers Centreon chez GRDF et je mène actuellement chez Eiffage la migration vers Centreon Cloud (5 000 hôtes)."
+    },
+    {
+      "id": "naxo", "t": "Product Owner RUN Supervision & Ordonnancement", "co": "Naxo (cabinet)",
+      "loc": "Île-de-France", "tt": "Hybride", "tjm": "560 €/j", "tmax": 560, "dur": "Longue durée",
+      "pub": "2026-11-20", "added": "2026-11-25", "ver": true, "role": "po", "techPts": 20, "clientPts": 2.5,
+      "url": "https://www.collective.work/jobs/fr/product-owner-run-supervision-and-ordonnancement-it-5cbq", "src": "Collective.work",
+      "stack": "IBM Workload Scheduler, Dynatrace, Grafana, Centreon, Logstash, Canopsis, Jira, ServiceNow, ITIL, SAFe",
+      "pros": ["ITIL, Jira, référentiel de supervision, pilotage", "TJM au-dessus de votre cible"],
+      "gaps": ["Rôle de Product Owner, hors de vos rôles ciblés", "ServiceNow, Dynatrace, IBM Workload Scheduler"],
+      "qs": ["Part de la supervision dans le backlog ?", "Démarrage et durée ?"],
+      "pitch": "Chef de projet technique en supervision depuis plus de 10 ans, je pilote des backlogs d'outillage (planification des sprints chez Docaposte), je formalise les besoins des équipes et je tiens les référentiels de supervision à jour, avec reporting SLA et processus ITIL."
+    },
+    {
+      "id": "fcom", "t": "Expert Observabilité & Monitoring – Prometheus / Grafana / Centreon", "co": "Freelance.com",
+      "loc": "Île-de-France", "tt": "Partiel", "tjm": "510–650 €/j", "tmax": 650, "dur": "3 ans",
+      "pub": "2026-07-23", "added": "2026-11-25", "ver": true, "role": "expert", "techPts": 18, "clientPts": 2.5,
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/expert-seo-consultant-referencement/expert-observabilite-monitoring-h-f-prometheus-grafana-centreon", "src": "Free-Work",
+      "stack": "Prometheus, Grafana, Alertmanager, Centreon, Kubernetes, AWS",
+      "pros": ["Centreon et Prometheus/Alertmanager", "TJM le plus élevé"],
+      "gaps": ["Grafana, Kubernetes et AWS", "Annonce de juillet, sans doute pourvue"],
+      "qs": ["Le besoin est-il encore ouvert ?"],
+      "pitch": "Expert Centreon, j'ai aussi travaillé avec Prometheus et Alertmanager (Docaposte) et je mène la migration vers Centreon Cloud chez Eiffage."
+    },
+    {
+      "id": "part", "t": "Expert Centreon", "co": "Partenor (ESN)",
+      "loc": "Lille", "tt": "Partiel", "tjm": "400–550 €/j", "tmax": 550, "dur": "1 an",
+      "pub": "2026-10-01", "added": "2026-11-25", "ver": true, "role": "expert", "techPts": 16, "clientPts": 2.5,
+      "block": "Exigences impératives non couvertes : GCP, Kubernetes, anglais professionnel",
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/expert-seo-consultant-referencement/expert-centreon-28", "src": "Free-Work",
+      "stack": "Centreon, Linux, GCP, Kubernetes, anglais pro ; OpenTelemetry, Grafana souhaités",
+      "pros": ["Centreon au cœur du poste"],
+      "gaps": ["GCP, Kubernetes et anglais professionnel impératifs", "OpenTelemetry et Grafana souhaités"],
+      "qs": ["Les impératifs sont-ils négociables ?"],
+      "pitch": "Expert Centreon depuis plus de 10 ans, j'ai mené plusieurs migrations de plateformes de supervision (GRDF, Docaposte, Eiffage)."
+    },
+    {
+      "id": "consort", "t": "Expert Centreon – Ingénieur Supervision IT", "co": "Consort Group (ESN)",
+      "loc": "Luxembourg", "tt": "Partiel", "tjm": "Non communiqué", "tmax": 0, "dur": "Mission temporaire, début 2027",
+      "pub": "2026-10-29", "added": "2026-11-25", "ver": true, "expired": true, "role": "expert", "techPts": 30, "clientPts": 2.5,
+      "url": "https://www.free-work.com/fr/tech-it/job-mission/ingenieur-apres-vente/expert-centreon-ingenieur-supervision-it-h-f", "src": "Free-Work",
+      "stack": "Centreon, Linux, Windows Server, SNMP, WMI, SSH, API REST ; Nagios, Grafana, Prometheus appréciés",
+      "pros": ["Secteur financier, plateforme Centreon existante"],
+      "gaps": ["Annonce supprimée ou expirée"],
+      "qs": ["Le besoin de début 2027 existe-t-il toujours ? (contacter Consort directement)"],
+      "pitch": "Expert Centreon, j'ai l'habitude des environnements financiers (BNP Paribas) et critiques."
+    }
+  ],
+  "platforms": [
+    ["Free-Work", "Principal job board freelance IT, recherche Centreon", "https://www.free-work.com/fr/tech-it/jobs/centreon"],
+    ["Malt", "Profil freelance et missions directes", "https://www.malt.fr"],
+    ["LeHibou", "Missions freelance grands comptes", "https://www.lehibou.com"],
+    ["Freelance.com", "Missions grands comptes et portage", "https://www.freelance.com"],
+    ["Collective.work", "Missions sans commission", "https://www.collective.work/jobs"],
+    ["Indeed", "Recherche Centreon", "https://fr.indeed.com/q-centreon-emplois.html"],
+    ["LinkedIn Jobs", "Recherche Centreon", "https://www.linkedin.com/jobs/search/?keywords=Centreon"],
+    ["Turnover-it", "Missions IT freelance", "https://www.turnover-it.com"],
+    ["Mindquest", "Missions freelance IT", "https://www.mindquest.io"],
+    ["Moovijob", "Emplois et missions au Luxembourg", "https://www.moovijob.com"],
+    ["BOAMP", "Marchés publics : chercher « Centreon »", "https://www.boamp.fr"],
+    ["Centreon – partenaires", "Annuaire des intégrateurs officiels", "https://www.centreon.com/fr/partenaires/trouver-un-partenaire/"]
+  ],
+  "leads": [
+    ["Marché public Centreon – Département de la Mayenne", "Accord-cadre de maintenance Centreon, 120 000 à 220 000 € HT sur environ 4 ans à partir de l'été 2026. Titulaire non publié : cherchez l'avis d'attribution sur le BOAMP, puis proposez-lui un renfort.", "https://www.francemarches.com/appel-offre/37ao26201244080620267253-2026-maintenance-outil-supervision"],
+    ["RATP – Expert Surveillance Grand Paris (Noisy-le-Grand)", "Poste CDI publié il y a environ 7 mois : MCO et évolutions de Centreon à grande échelle. Peut se transformer en prestation via une ESN référencée.", "https://jeunesdavenirs-recrut.fr/offre/i_c50c63aaa732597283f241a7fd0645d9"],
+    ["Orsenna – Blue Partner Centreon", "Plus haut niveau de partenariat Centreon : bon point d'entrée pour de la sous-traitance.", "https://orsenna.fr/logiciels/centreon/"],
+    ["Tenedis – intégrateur partenaire", "Intégrateur observabilité pour des clients du CAC40.", "https://www.centreon.com/fr/news/partenariat-leader-de-lit-performance-tenedis-renforce-sa-strategie-vers-lobservabilite-des-si-avec-centreon-2/"],
+    ["All4IT, Axians, Econocom, EVA, Neurones IT, Ozitem", "Intégrateurs Centreon cités par l'éditeur (liste de 2021). Vous connaissez déjà Econocom.", "https://www.solutions-numeriques.com/?p=194684"],
+    ["NSI Luxembourg et CTG (Luxembourg)", "Partenaire Centreon et ESN qui recrutait un expert Centreon pour une institution européenne.", "https://moovijob.com/offres-emploi/ctg-it-solutions-ffdf7/centreon-expert"]
+  ]
+}
