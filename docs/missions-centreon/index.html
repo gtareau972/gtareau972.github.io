@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
 <title>Missions Centreon</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 /* VOICE: outil de travail net, factuel, comme un bureau de prospection bien rangé
    IDEA: une boîte de médicament / étiquette de pharmacie — chaque mission est une notice claire, posologie = score
-   PICTURE: le tableau des missions lui-même, avec barres de score et comparateur
+   PICTURE: le tableau des missions lui-même, avec barres de score, relances et comparateur
    COLOUR and TYPE: blanc, émeraude #00a86b, rose pâle #ffd6e0, noir ; nuit #04140d ; Schibsted Grotesk
-   LAYOUT: bandes rectangulaires empilées : en-tête chiffres, tableau, comparateur, plateformes, pistes off market */
+   LAYOUT: bandes rectangulaires empilées : en-tête chiffres, relances, tableau, stats, comparateur, plateformes, pistes */
 :root{color-scheme:light dark;--bg:light-dark(#fff,#04140d);--ink:light-dark(#0b0b0b,#eaf5ef);--mut:light-dark(#4a5550,#9fb5aa);--em:#00a86b;--emd:light-dark(#007a4e,#3fd69a);--pk:light-dark(#ffd6e0,#4a1f2b);--pki:light-dark(#7a1a33,#ffd6e0);--card:light-dark(#f4faf7,#0b241a);--line:light-dark(#d5e6dd,#1d3d2f)}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
@@ -30,27 +31,30 @@ header a{color:#fff}
 .kpi{background:var(--em);padding:12px 14px}
 .kpi b{display:block;font-size:clamp(24px,3vw,34px);line-height:1.1}
 .kpi span{font-size:14px;opacity:.9}
+.prof{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.prof span{font-size:14px;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,.18)}
 .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:0 0 16px}
 .bar label{display:flex;flex-direction:column;font-size:14px;color:var(--mut);gap:4px}
 input,select,textarea,button{font:inherit;font-size:16px;color:var(--ink)}
-input[type=search],select,input[type=email],textarea{background:var(--bg);border:1.5px solid var(--line);border-radius:6px;padding:9px 10px;min-height:44px}
-textarea{width:100%;min-height:220px;line-height:1.5}
+input[type=search],input[type=date],select,input[type=email],textarea{background:var(--bg);border:1.5px solid var(--line);border-radius:6px;padding:9px 10px;min-height:44px}
+textarea{width:100%;min-height:240px;line-height:1.5}
 .chk{flex-direction:row!important;align-items:center;min-height:44px;color:var(--ink)!important;font-size:15px!important}
 .chk input{width:20px;height:20px;accent-color:var(--em)}
 button,.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 16px;border-radius:6px;border:1.5px solid var(--ink);background:transparent;cursor:pointer;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px}
 .btn.pri,button.pri{background:var(--ink);color:var(--bg)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--em);outline-offset:2px}
 .list{display:grid;gap:12px}
-.m{border:1.5px solid var(--line);border-radius:8px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) 210px}
+.m{border:1.5px solid var(--line);border-radius:8px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) 220px}
 .m.exp{opacity:.6}
 .m .body{padding:16px 18px}
 .m .side{border-inline-start:1.5px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:8px}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-.tag{font-size:13px;padding:2px 8px;border-radius:99px;background:var(--bg);border:1px solid var(--line);white-space:nowrap}
+.tag{font-size:13px;padding:2px 8px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
 .tag.v{background:var(--em);color:#fff;border-color:var(--em)}
 .tag.nv{background:var(--pk);color:var(--pki);border-color:transparent}
+.tag.new{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:10px 0;font-size:14px}
-.facts div b{display:block;font-size:15px;white-space:nowrap}
+.facts div b{display:block;font-size:15px}
 .facts div span{color:var(--mut)}
 .score{font-size:40px;font-weight:800;line-height:1}
 .score small{font-size:15px;font-weight:500;color:var(--mut)}
@@ -58,13 +62,22 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .meter i{display:block;height:100%;background:var(--em)}
 .meter.low i{background:#d94a6a}
 .lvl{font-size:14px;font-weight:700}
+.side label{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--mut)}
 details{margin-top:8px}summary{cursor:pointer;font-weight:700;min-height:32px}
 .cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:8px;font-size:15px}
 .cols3 ul{margin:4px 0 0;padding-inline-start:18px}
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.cmpbox{background:var(--pk);color:var(--pki)}
-.cmpbox h2{color:var(--pki)}
-.cmpbox table{width:100%;border-collapse:collapse;background:var(--bg);color:var(--ink);border-radius:8px;overflow:hidden}
+.rel{background:var(--pk);color:var(--pki)}
+.rel h2{color:var(--pki)}
+.rel ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.rel li{background:var(--bg);color:var(--ink);border-radius:8px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.st{border:1.5px solid var(--line);border-radius:8px;padding:16px;background:var(--card)}
+.row{display:grid;grid-template-columns:9.5em minmax(0,1fr) 2.5em;gap:8px;align-items:center;font-size:14px;margin:6px 0}
+.row .meter{height:12px}
+.row b{text-align:right}
+.big{font-size:clamp(28px,3.4vw,40px);font-weight:800;line-height:1.1}
+.cmpbox table{width:100%;border-collapse:collapse;background:var(--bg);color:var(--ink)}
 th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top;font-size:15px}
 th{font-size:14px;color:var(--mut);font-weight:700}
 .empty{padding:20px;border:1.5px dashed currentColor;border-radius:8px}
@@ -72,15 +85,17 @@ th{font-size:14px;color:var(--mut);font-weight:700}
 .plat{border:1.5px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--card)}
 .plat:hover{border-color:var(--em)}
 .plat b{font-size:17px}.plat span{font-size:14px;color:var(--mut)}
-.lead{border-inline-start:6px solid var(--em);padding:12px 16px;background:var(--card);border-radius:0 8px 8px 0}
+.lead{border-inline-start:6px solid var(--em);padding:12px 16px;background:var(--bg);border-radius:0 8px 8px 0}
 dialog{border:0;border-radius:10px;padding:0;max-width:min(720px,94vw);width:100%;background:var(--bg);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
 dialog::backdrop{background:rgba(4,20,13,.6)}
 .dlg{padding:20px;display:grid;gap:12px}
+.dlg label{display:flex;flex-direction:column;gap:4px}
 .note{font-size:14px;color:var(--mut)}
 .ok{color:var(--emd);font-weight:700;font-size:14px;min-height:20px}
 footer.band{background:var(--ink);color:var(--bg)}
 footer a{color:var(--bg)}
 .scroll{overflow-x:auto}
+@media(max-width:900px){.stats{grid-template-columns:1fr}}
 @media(max-width:820px){.m{grid-template-columns:1fr}.m .side{border-inline-start:0;border-top:1.5px solid var(--line);flex-direction:row;flex-wrap:wrap;align-items:center}.m .side .meter{flex:1 1 120px}.cols3{grid-template-columns:1fr}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){table{font-size:13px}}
 @media(prefers-reduced-motion:no-preference){.meter i{transition:width .6s ease}}
@@ -89,32 +104,50 @@ footer a{color:var(--bg)}
 <body>
 <header class="band"><div class="wrap">
 <h1>Missions Centreon pour Ghislain Tareau</h1>
-<p>Les missions repérées, notées par rapport à votre CV d'architecte supervision Centreon. Pour chacune : les infos clés, de quoi comparer, le lien vers l'annonce et un message de candidature prêt à envoyer.</p>
+<p>Missions freelance Centreon notées par rapport à votre CV et à vos préférences, avec relances, statistiques et candidature prête à envoyer.</p>
+<div class="prof" id="prof"></div>
 <div class="kpis" id="kpis"></div>
 </div></header>
 
 <main>
+<section class="band rel" id="relances" hidden><div class="wrap">
+<h2>À relancer</h2>
+<p class="sm">Candidatures dont la date de relance est atteinte.</p>
+<ul id="rell"></ul>
+</div></section>
+
 <section class="band"><div class="wrap">
 <h2>Missions</h2>
-<p class="mut sm">Cochez « Comparer » sur 2 ou 3 missions pour les voir côte à côte plus bas. Le statut de suivi est enregistré dans ce navigateur.</p>
+<p class="mut sm">Cochez « Comparer » sur 2 ou 3 missions pour les voir côte à côte. Statut et date de relance sont enregistrés dans ce navigateur ; passer une mission en « Candidature envoyée » programme une relance à 7 jours.</p>
 <div class="bar">
 <label>Recherche<input type="search" id="q" placeholder="Centreon, Lille, ESN…"></label>
-<label>Lieu<select id="loc"><option value="">Tous</option><option>Île-de-France</option><option>Lille</option><option>Luxembourg</option></select></label>
+<label>Lieu<select id="loc"><option value="">Tous</option></select></label>
 <label>Trier par<select id="sort"><option value="score">Score</option><option value="date">Date de publication</option><option value="tjm">TJM max</option></select></label>
+<label class="chk"><input type="checkbox" id="role" checked> Rôles ciblés seulement</label>
 <label class="chk"><input type="checkbox" id="ver"> Vérifiées seulement</label>
 <label class="chk"><input type="checkbox" id="exp" checked> Masquer les expirées</label>
 </div>
-<div class="list" id="list"></div>
+<div class="list" id="list"><div class="empty">Chargement des missions…</div></div>
 </div></section>
 
-<section class="band cmpbox" id="compare"><div class="wrap">
+<section class="band" style="background:var(--card)"><div class="wrap">
+<h2>Pipeline</h2>
+<div class="actions" style="margin:0 0 16px">
+<button class="pri" id="csv">Exporter le suivi en CSV</button>
+<button id="csvc">Copier le CSV</button>
+<span class="ok" id="csvok" aria-live="polite"></span>
+</div>
+<div class="stats" id="stats"></div>
+</div></section>
+
+<section class="band rel cmpbox"><div class="wrap">
 <h2>Comparateur</h2>
 <div id="cmp"></div>
 </div></section>
 
 <section class="band"><div class="wrap">
 <h2>Plateformes de missions</h2>
-<p class="mut sm">Ouvrez chaque site, connectez-vous à votre compte et mettez votre CV et votre disponibilité à jour.</p>
+<p class="mut sm">Ouvrez chaque site, connectez-vous et mettez votre CV et votre disponibilité à jour.</p>
 <div class="grid" id="plats"></div>
 </div></section>
 
@@ -127,7 +160,8 @@ footer a{color:var(--bg)}
 
 <footer class="band"><div class="wrap sm">
 <h3>Méthode de notation</h3>
-<p>Score sur 100 calculé sur les critères disponibles : adéquation technique avec le CV (40), localisation (15 en Île-de-France, 7,5 en région ou au Luxembourg), fraîcheur (10 pour 0–2 jours, 7 pour 3–7, 3 pour 8–14, 0 au-delà), intermédiaire identifié (2,5 sur 5). TJM cible et durée non renseignés : couverture 70 %. Recherche du 25/11/2026 ; les annonces de plus de 14 jours sont peut-être pourvues. Aucune candidature n'a été envoyée.</p>
+<p>Score sur 100 rapporté aux critères disponibles : adéquation technique avec le CV (40), TJM (20 si le maximum publié atteint 500 €/j, 10 sinon), localisation (15 : toutes zones acceptées), fraîcheur calculée au jour de consultation (10 pour 0–2 jours, 7 pour 3–7, 3 pour 8–14, 0 au-delà), durée (10 : toute durée acceptée), intermédiaire identifié (2,5 sur 5). Sans TJM publié, la couverture tombe à 80 %. Une mission avec une exigence impérative non couverte n'est jamais classée prioritaire.</p>
+<p id="upd"></p>
 </div></footer>
 
 <dialog id="dlg"><form class="dlg" id="dlgf" method="dialog">
@@ -135,11 +169,11 @@ footer a{color:var(--bg)}
 <label class="sm mut">Email du recruteur (si vous l'avez)<input type="email" id="to" placeholder="prenom.nom@societe.fr"></label>
 <label class="sm mut">Objet<input type="search" id="subj"></label>
 <label class="sm mut">Message (modifiable)<textarea id="msg"></textarea></label>
-<p class="note">Complétez vos coordonnées dans la signature et pensez à joindre votre CV. Si le bouton email ne s'ouvre pas, copiez le message et collez-le dans votre messagerie ou dans le formulaire de l'annonce.</p>
+<p class="note">Le message contient le lien vers votre CV en ligne. Complétez votre date de disponibilité et vos coordonnées avant l'envoi.</p>
 <div class="actions">
 <button type="button" class="pri" id="copy">Copier le message</button>
 <a class="btn" id="mail" href="#">Ouvrir dans ma messagerie</a>
-<a class="btn" id="go" href="#">Postuler sur l'annonce</a>
+<a class="btn" id="go" href="#" target="_blank" rel="noopener">Postuler sur l'annonce</a>
 <button type="button" id="close">Fermer</button>
 </div>
 <div class="ok" id="okm" aria-live="polite"></div>
@@ -147,108 +181,52 @@ footer a{color:var(--bg)}
 
 <script>
 {
-const TODAY=new Date('2026-11-25');
-const M=[
-{id:'asap-cdp',t:'Chef de projet MOE Outillage d\'exploitation et Supervision',co:'ASAP Technologies (ESN)',loc:'Île-de-France',tt:'Partiel',tjm:'460–490 €/j',tmax:490,dur:'3 ans',pub:'2026-11-02',score:79,ver:true,url:'https://www.free-work.com/fr/tech-it/job-mission/ingenieur-dexploitation/chef-de-projet-moe-outillage-dexploitation-et-supervision-1',src:'Free-Work',tech:'Centreon, ITIL, MariaDB, PostgreSQL, Linux, Windows Server, VMware, CMDB',
-pros:['Pilotage et coordination d\'outillage de supervision Centreon : cœur de votre profil','ITIL, MariaDB, pilotage de prestataires et TMA','Expériences GRDF, Dior et Eiffage directement transposables'],
-gaps:['Aucun écart technique notable','Annonce publiée il y a plus de 3 semaines'],
-qs:['Le poste est-il toujours ouvert ?','Client final et secteur ?','Rythme de télétravail ?','TJM possible au-delà de 490 € ?'],
-pitch:'J\'ai piloté la migration Shinken vers Centreon chez GRDF (coordination des intervenants, Go/No-Go, suivi financier) et la refonte Centreon MAP/MBI/BAM chez Dior. Je mène actuellement chez Eiffage la migration vers Centreon Cloud (5 000 hôtes, 26 000 services, OpenTicket vers EasyVista).'},
-{id:'asap-exp',t:'Expert Centreon',co:'ASAP Technologies (ESN)',loc:'Île-de-France',tt:'Non précisé',tjm:'400–550 €/j',tmax:550,dur:'3 ans',pub:'2026-09-28',score:74,ver:true,url:'https://www.free-work.com/fr/tech-it/job-mission/expert-seo-consultant-referencement/expert-centreon-27',src:'Free-Work',tech:'Centreon, SNMP/MIB, Python, Perl, PHP, VBS, MariaDB, PostgreSQL, Oracle, VMware, ITIL, GLPI',
-pros:['Centreon, SNMP, Python, Perl, MariaDB, VMware, ITIL','GLPI déjà intégré à Centreon (Docaposte)','Environnements critiques (transports, énergie, finance)'],
-gaps:['PHP, VBS et base de données Oracle absents du CV','Annonce publiée il y a 2 mois'],
-qs:['L\'annonce est-elle encore active ?','Plutôt MCO ou build ?','Version de Centreon et périmètre ?'],
-pitch:'Expert Centreon (Central, Pollers, Remote, HA, MAP, MBI, BAM), je développe des sondes en Bash, Python et Perl et j\'automatise via CLAPI et l\'API REST. J\'ai intégré Centreon à GLPI, iTop et Jira, et je mène actuellement chez Eiffage une migration vers Centreon Cloud (5 000 hôtes).'},
-{id:'hays',t:'DevOps / Expert Centreon',co:'HAYS France (cabinet)',loc:'Lille',tt:'Non précisé',tjm:'Non communiqué',tmax:0,dur:'1 an',pub:'2026-11-24',score:74,ver:false,url:'https://www.free-work.com/fr/tech-it',src:'Free-Work (page d\'accueil)',tech:'Centreon, administration Linux, DevOps, templatisation, industrialisation',
-pros:['MCO, design, templatisation et évolution de Centreon','Plateforme d\'observabilité à grande échelle','Annonce la plus récente'],
-gaps:['Volet DevOps à préciser','Lille, loin de Noisy-le-Grand','Page détaillée non consultée : à vérifier'],
-qs:['TJM ?','Rythme de télétravail ?','Version de Centreon et usage HA/MBI/BAM ?','Client final ?'],
-pitch:'Architecte supervision Centreon depuis plus de 10 ans, j\'ai mené le MCO et l\'évolution de plateformes à grande échelle (SNCF, GRDF) et je pilote actuellement chez Eiffage la migration vers Centreon Cloud de 5 000 hôtes, avec rationalisation des templates et des Plugin Packs.'},
-{id:'odh',t:'Expert outillage monitoring',co:'ODHCOM – Freelancerepublik (cabinet)',loc:'Île-de-France',tt:'Hybride',tjm:'Non communiqué',tmax:0,dur:'12 mois',pub:'2026-11-20',score:72,ver:true,url:'https://www.free-work.com/fr/tech-it/job-mission/expert-seo-consultant-referencement/expert-outillage-monitoring',src:'Free-Work',tech:'Centreon, Prometheus, Grafana, Alertmanager, Linux, Windows, Ansible',
-pros:['Centreon, Prometheus et Alertmanager présents sur votre CV','Secteur énergie (comme GRDF)','Annonce récente'],
-gaps:['Grafana et Ansible demandés','Dynatrace, Kubernetes et AWS appréciés'],
-qs:['TJM ? (une annonce proche affichait 600–650 €/j)','Part de Centreon dans la stack ?','Démarrage ?'],
-pitch:'Expert Centreon (HA, MAP, MBI, BAM), j\'ai aussi travaillé avec Prometheus et Alertmanager chez Docaposte. J\'ai piloté la migration Shinken vers Centreon chez GRDF et je mène actuellement chez Eiffage la migration vers Centreon Cloud (5 000 hôtes).'},
-{id:'naxo',t:'Product Owner RUN Supervision & Ordonnancement',co:'Naxo (cabinet)',loc:'Île-de-France',tt:'Hybride',tjm:'560 €/j',tmax:560,dur:'Longue durée',pub:'2026-11-20',score:64,ver:true,url:'https://www.collective.work/jobs/fr/product-owner-run-supervision-and-ordonnancement-it-5cbq',src:'Collective.work',tech:'IBM Workload Scheduler, Dynatrace, Grafana, Centreon, Logstash, Canopsis, Jira, ServiceNow, ITIL, SAFe',
-pros:['ITIL, Jira, référentiel de supervision, pilotage','Centreon dans la stack'],
-gaps:['Expérience formelle de Product Owner','ServiceNow, Dynatrace, IBM Workload Scheduler'],
-qs:['Part de la supervision dans le backlog ?','Démarrage et durée ?'],
-pitch:'Chef de projet technique en supervision depuis plus de 10 ans, je pilote des backlogs d\'outillage (planification des sprints chez Docaposte), je formalise les besoins des équipes et je tiens les référentiels de supervision à jour, avec reporting SLA et processus ITIL.'},
-{id:'fcom',t:'Expert Observabilité & Monitoring – Prometheus / Grafana / Centreon',co:'Freelance.com',loc:'Île-de-France',tt:'Partiel',tjm:'510–650 €/j',tmax:650,dur:'3 ans',pub:'2026-07-23',score:51,ver:true,url:'https://www.free-work.com/fr/tech-it/job-mission/expert-seo-consultant-referencement/expert-observabilite-monitoring-h-f-prometheus-grafana-centreon',src:'Free-Work',tech:'Prometheus, Grafana, Alertmanager, Centreon, Kubernetes, AWS',
-pros:['Centreon et Prometheus/Alertmanager','TJM le plus élevé'],
-gaps:['Grafana, Kubernetes et AWS','Annonce de juillet, sans doute pourvue'],
-qs:['Le besoin est-il encore ouvert ?'],
-pitch:'Expert Centreon, j\'ai aussi travaillé avec Prometheus et Alertmanager (Docaposte) et je mène la migration vers Centreon Cloud chez Eiffage.'},
-{id:'part',t:'Expert Centreon',co:'Partenor (ESN)',loc:'Lille',tt:'Partiel',tjm:'400–550 €/j',tmax:550,dur:'1 an',pub:'2026-10-01',score:37,ver:true,block:'Exigences impératives non couvertes : GCP, Kubernetes, anglais professionnel',url:'https://www.free-work.com/fr/tech-it/job-mission/expert-seo-consultant-referencement/expert-centreon-28',src:'Free-Work',tech:'Centreon, Linux, GCP, Kubernetes, anglais pro ; OpenTelemetry, Grafana souhaités',
-pros:['Centreon au cœur du poste'],
-gaps:['GCP, Kubernetes et anglais professionnel impératifs','OpenTelemetry et Grafana souhaités'],
-qs:['Les impératifs sont-ils négociables ?'],
-pitch:'Expert Centreon depuis plus de 10 ans, j\'ai mené plusieurs migrations de plateformes de supervision (GRDF, Docaposte, Eiffage).'},
-{id:'consort',t:'Expert Centreon – Ingénieur Supervision IT',co:'Consort Group (ESN)',loc:'Luxembourg',tt:'Partiel',tjm:'Non communiqué',tmax:0,dur:'Mission temporaire, début 2027',pub:'2026-10-29',score:null,ver:true,expired:true,url:'https://www.free-work.com/fr/tech-it/job-mission/ingenieur-apres-vente/expert-centreon-ingenieur-supervision-it-h-f',src:'Free-Work',tech:'Centreon, Linux, Windows Server, SNMP, WMI, SSH, API REST ; Nagios, Grafana, Prometheus appréciés',
-pros:['Secteur financier, plateforme Centreon existante'],
-gaps:['Annonce supprimée ou expirée'],
-qs:['Le besoin de début 2027 existe-t-il toujours ? (contacter Consort directement)'],
-pitch:'Expert Centreon, j\'ai l\'habitude des environnements financiers (BNP Paribas) et critiques.'}
-];
-const PLATS=[
-['Free-Work','Principal job board freelance IT, recherche Centreon','https://www.free-work.com/fr/tech-it/jobs/centreon'],
-['Malt','Profil freelance et missions directes','https://www.malt.fr'],
-['LeHibou','Missions freelance grands comptes','https://www.lehibou.com'],
-['Freelance.com','Missions grands comptes et portage','https://www.freelance.com'],
-['Collective.work','Missions sans commission','https://www.collective.work/jobs'],
-['Indeed','Recherche Centreon','https://fr.indeed.com/q-centreon-emplois.html'],
-['LinkedIn Jobs','Recherche Centreon','https://www.linkedin.com/jobs/search/?keywords=Centreon'],
-['Turnover-it','Missions IT freelance','https://www.turnover-it.com'],
-['Mindquest','Missions freelance IT','https://www.mindquest.io'],
-['Moovijob','Emplois et missions au Luxembourg','https://www.moovijob.com'],
-['BOAMP','Marchés publics : chercher « Centreon »','https://www.boamp.fr'],
-['Centreon – partenaires','Annuaire des intégrateurs officiels','https://www.centreon.com/fr/partenaires/trouver-un-partenaire/']
-];
-const LEADS=[
-['Marché public Centreon – Département de la Mayenne','Accord-cadre de maintenance Centreon, 120 000 à 220 000 € HT sur environ 4 ans à partir de l\'été 2026. Titulaire non publié : cherchez l\'avis d\'attribution sur le BOAMP, puis proposez-lui un renfort.','https://www.francemarches.com/appel-offre/37ao26201244080620267253-2026-maintenance-outil-supervision'],
-['RATP – Expert Surveillance Grand Paris (Noisy-le-Grand)','Poste CDI publié il y a environ 7 mois : MCO et évolutions de Centreon à grande échelle. Peut se transformer en prestation via une ESN référencée.','https://jeunesdavenirs-recrut.fr/offre/i_c50c63aaa732597283f241a7fd0645d9'],
-['Orsenna – Blue Partner Centreon','Plus haut niveau de partenariat Centreon : bon point d\'entrée pour de la sous-traitance.','https://orsenna.fr/logiciels/centreon/'],
-['Tenedis – intégrateur partenaire','Intégrateur observabilité pour des clients du CAC40.','https://www.centreon.com/fr/news/partenariat-leader-de-lit-performance-tenedis-renforce-sa-strategie-vers-lobservabilite-des-si-avec-centreon-2/'],
-['All4IT, Axians, Econocom, EVA, Neurones IT, Ozitem','Intégrateurs Centreon cités par l\'éditeur (liste de 2021). Vous connaissez déjà Econocom.','https://www.solutions-numeriques.com/?p=194684'],
-['NSI Luxembourg et CTG (Luxembourg)','Partenaire Centreon et ESN qui recrutait un expert Centreon pour une institution européenne.','https://moovijob.com/offres-emploi/ctg-it-solutions-ffdf7/centreon-expert']
-];
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt=d=>new Date(d).toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'});
-const age=d=>Math.round((TODAY-new Date(d))/864e5);
-const lvl=s=>s==null?'—':s>=85?'Prioritaire':s>=70?'Pertinente':s>=50?'À étudier':'Faible pertinence';
+const TODAY=new Date(new Date().toISOString().slice(0,10));
 const ST=['À qualifier','À contacter','Candidature envoyée','Entretien','Négociation','Refus','Clôturée'];
-let store={};try{store=JSON.parse(localStorage.getItem('mc-status')||'{}')}catch(e){}
-const save=()=>{try{localStorage.setItem('mc-status',JSON.stringify(store))}catch(e){}};
-const sel=new Set();
+const ROLE={expert:'Expert / architecte',cdp:'Chef de projet',audit:'Audit / conseil',migration:'Migration',po:'Product Owner'};
 const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=d=>d?new Date(d).toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'}):'';
+const age=d=>Math.round((TODAY-new Date(d))/864e5);
+const iso=d=>d.toISOString().slice(0,10);
+let D={missions:[],platforms:[],leads:[],profile:{}},M=[];
+let store={};try{store=JSON.parse(localStorage.getItem('mc-track')||'{}')}catch(e){}
+try{const old=JSON.parse(localStorage.getItem('mc-status')||'{}');for(const k in old)if(!store[k])store[k]={st:old[k]}}catch(e){}
+const save=()=>{try{localStorage.setItem('mc-track',JSON.stringify(store))}catch(e){}};
+const tr=id=>store[id]||(store[id]={st:'À qualifier'});
+const sel=new Set();
 
-const act=M.filter(m=>!m.expired);
-$('kpis').innerHTML=[
-[act.length,'missions actives'],
-[act.filter(m=>m.score>=70).length,'pertinentes (70+)'],
-[Math.max(...act.map(m=>m.score)),'meilleur score'],
-['25/11/2026','date de recherche']
-].map(k=>`<div class="kpi"><b>${esc(k[0])}</b><span>${esc(k[1])}</span></div>`).join('');
+function scoreOf(m){
+ const P=D.profile;let pts=m.techPts||0,max=40;
+ if(m.tmax>0){max+=20;pts+=m.tmax>=(P.tjmTarget||500)?20:10}
+ max+=15;pts+=15;
+ max+=10;const a=age(m.pub);pts+=a<=2?10:a<=7?7:a<=14?3:0;
+ if(m.dur){max+=10;pts+=10}
+ if(m.clientPts!=null){max+=5;pts+=m.clientPts}
+ return {score:Math.round(100*pts/max),cov:max};
+}
+const lvl=m=>m.expired?'Expirée':m.block?'Contrainte impérative non couverte':m.score>=85?'Prioritaire':m.score>=70?'Pertinente':m.score>=50?'À étudier':'Faible pertinence';
+const targeted=m=>(D.profile.roles||[]).includes(m.role);
+const isNew=m=>m.added&&age(m.added)<=7;
 
 function card(m){
- const a=age(m.pub);
- const st=store[m.id]||'À qualifier';
+ const t=tr(m.id),a=age(m.pub);
  return `<article class="m${m.expired?' exp':''}">
  <div class="body">
   <h3>${esc(m.t)}</h3>
   <div class="mut sm">${esc(m.co)} · source : ${esc(m.src)}</div>
-  <div class="tags">${m.expired?'<span class="tag nv">Expirée</span>':m.ver?'<span class="tag v">Vérifiée</span>':'<span class="tag nv">Non vérifiée</span>'}${m.block?`<span class="tag nv">${esc(m.block)}</span>`:''}</div>
+  <div class="tags">${isNew(m)?'<span class="tag new">Ajoutée récemment</span>':''}${m.expired?'<span class="tag nv">Expirée</span>':m.ver?'<span class="tag v">Vérifiée</span>':'<span class="tag nv">Non vérifiée</span>'}<span class="tag">${esc(ROLE[m.role]||m.role)}</span>${targeted(m)?'':'<span class="tag nv">Hors rôles ciblés</span>'}${m.block?`<span class="tag nv">${esc(m.block)}</span>`:''}</div>
   <div class="facts">
    <div><span>Lieu</span><b>${esc(m.loc)}</b></div>
    <div><span>TJM</span><b>${esc(m.tjm)}</b></div>
    <div><span>Durée</span><b>${esc(m.dur)}</b></div>
    <div><span>Publiée</span><b>${fmt(m.pub)}</b><span class="sm">il y a ${a} j</span></div>
   </div>
-  <div class="sm"><b>Technologies :</b> ${esc(m.tech)}</div>
+  <div class="sm"><b>Technologies :</b> ${esc(m.stack)}</div>
   <details><summary>Analyse détaillée</summary><div class="cols3">
-   <div><b>Points forts</b><ul>${m.pros.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
-   <div><b>Écarts</b><ul>${m.gaps.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
-   <div><b>Questions à poser</b><ul>${m.qs.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+   <div><b>Points forts</b><ul>${(m.pros||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+   <div><b>Écarts</b><ul>${(m.gaps||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+   <div><b>Questions à poser</b><ul>${(m.qs||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
   </div></details>
   <div class="actions">
    <a class="btn" href="${esc(m.url)}" target="_blank" rel="noopener">Voir l'annonce</a>
@@ -256,31 +234,63 @@ function card(m){
   </div>
  </div>
  <div class="side">
-  <div class="score">${m.score==null?'—':m.score}<small>/100</small></div>
-  ${m.score==null?'':`<div class="meter${m.score<50?' low':''}"><i style="width:${m.score}%"></i></div>`}
-  <div class="lvl">${esc(lvl(m.score))}</div>
-  <div class="sm mut">Couverture 70 %</div>
-  <label class="sm mut" style="display:flex;flex-direction:column;gap:4px">Suivi<select data-st="${esc(m.id)}">${ST.map(s=>`<option${s===st?' selected':''}>${esc(s)}</option>`).join('')}</select></label>
+  <div class="score">${m.expired?'—':m.score}<small>/100</small></div>
+  ${m.expired?'':`<div class="meter${m.score<50||m.block?' low':''}"><i style="width:${m.score}%"></i></div>`}
+  <div class="lvl">${esc(lvl(m))}</div>
+  <div class="sm mut">Couverture ${m.cov} %</div>
+  <label>Suivi<select data-st="${esc(m.id)}">${ST.map(s=>`<option${s===t.st?' selected':''}>${esc(s)}</option>`).join('')}</select></label>
+  <label>Relance le<input type="date" data-rl="${esc(m.id)}" value="${esc(t.rl||'')}"></label>
   <label class="chk"><input type="checkbox" data-cmp="${esc(m.id)}"${sel.has(m.id)?' checked':''}> Comparer</label>
  </div></article>`;
 }
 function render(){
- const q=$('q').value.trim().toLowerCase(),loc=$('loc').value,ver=$('ver').checked,exp=$('exp').checked,so=$('sort').value;
- let r=M.filter(m=>(!q||(m.t+m.co+m.loc+m.tech).toLowerCase().includes(q))&&(!loc||m.loc===loc)&&(!ver||m.ver)&&(!exp||!m.expired));
- r.sort((a,b)=>so==='date'?new Date(b.pub)-new Date(a.pub):so==='tjm'?b.tmax-a.tmax:(b.score??-1)-(a.score??-1));
+ const q=$('q').value.trim().toLowerCase(),loc=$('loc').value,ver=$('ver').checked,exp=$('exp').checked,ro=$('role').checked,so=$('sort').value;
+ let r=M.filter(m=>(!q||(m.t+m.co+m.loc+m.stack).toLowerCase().includes(q))&&(!loc||m.loc===loc)&&(!ver||m.ver)&&(!exp||!m.expired)&&(!ro||targeted(m)));
+ const rank=m=>m.expired?-2:m.block?-1:m.score;
+ r.sort((a,b)=>so==='date'?new Date(b.pub)-new Date(a.pub):so==='tjm'?b.tmax-a.tmax:rank(b)-rank(a)||b.score-a.score);
  $('list').innerHTML=r.length?r.map(card).join(''):'<div class="empty">Aucune mission ne correspond à ces filtres.</div>';
+}
+function renderRel(){
+ const done=['Refus','Clôturée'];
+ const r=M.filter(m=>{const t=store[m.id];return t&&t.rl&&!done.includes(t.st)&&new Date(t.rl)<=TODAY}).sort((a,b)=>store[a.id].rl.localeCompare(store[b.id].rl));
+ $('relances').hidden=!r.length;
+ $('rell').innerHTML=r.map(m=>{const t=store[m.id],late=age(t.rl);return `<li><span><b>${esc(m.t)}</b> · ${esc(m.co)}<br><span class="sm mut">${esc(t.st)} · relance prévue le ${fmt(t.rl)}${late>0?` (retard de ${late} j)`:''}</span></span><span class="actions" style="margin:0"><a class="btn" href="${esc(m.url)}" target="_blank" rel="noopener">Annonce</a><button data-snooze="${esc(m.id)}">Relancé, +7 j</button></span></li>`}).join('');
+}
+function renderStats(){
+ const act=M.filter(m=>!m.expired);
+ const cnt=ST.map(s=>[s,M.filter(m=>tr(m.id).st===s).length]);
+ const mx=Math.max(1,...cnt.map(c=>c[1]));
+ const tj=act.filter(m=>m.tmax>0),avg=tj.length?Math.round(tj.reduce((a,m)=>a+m.tmax,0)/tj.length):0;
+ const ok=tj.filter(m=>m.tmax>=(D.profile.tjmTarget||500)).length;
+ const src={};act.forEach(m=>{const k=m.src.split(' (')[0];src[k]=(src[k]||0)+1});
+ const lv=['Prioritaire','Pertinente','À étudier','Faible pertinence','Contrainte impérative non couverte'].map(l=>[l,act.filter(m=>lvl(m)===l).length]);
+ const rows=(a,max)=>a.map(([l,n])=>`<div class="row"><span>${esc(l)}</span><div class="meter"><i style="width:${n/max*100}%"></i></div><b>${n}</b></div>`).join('');
+ $('stats').innerHTML=`<div class="st"><h3>Par statut de suivi</h3>${rows(cnt,mx)}</div>
+ <div class="st"><h3>TJM et pertinence</h3><div class="big">${avg?avg+' €/j':'—'}</div><p class="sm mut">TJM maximum moyen sur ${tj.length} missions actives avec TJM publié ; ${ok} atteignent votre cible de ${esc(D.profile.tjmTarget||500)} €/j.</p>${rows(lv,Math.max(1,...lv.map(x=>x[1])))}</div>
+ <div class="st"><h3>Par source</h3>${rows(Object.entries(src),Math.max(1,...Object.values(src)))}</div>`;
 }
 function renderCmp(){
  const r=M.filter(m=>sel.has(m.id));
- if(r.length<2){$('cmp').innerHTML=`<div class="empty">Cochez « Comparer » sur au moins 2 missions (3 au maximum). ${r.length?'1 mission sélectionnée.':''}</div>`;return}
- const rows=[['Société',m=>m.co],['Score',m=>m.score==null?'—':m.score+'/100 · '+lvl(m.score)],['Lieu',m=>m.loc],['Télétravail',m=>m.tt],['TJM',m=>m.tjm],['Durée',m=>m.dur],['Publiée',m=>fmt(m.pub)+' (il y a '+age(m.pub)+' j)'],['Statut',m=>m.expired?'Expirée':m.ver?'Vérifiée':'Non vérifiée'],['Technologies',m=>m.tech],['Points forts',m=>m.pros.join(' · ')],['Écarts',m=>m.gaps.join(' · ')]];
+ if(r.length<2){$('cmp').innerHTML=`<div class="empty">Cochez « Comparer » sur au moins 2 missions (3 au maximum).${r.length?' 1 mission sélectionnée.':''}</div>`;return}
+ const rows=[['Société',m=>m.co],['Score',m=>(m.expired?'—':m.score+'/100')+' · '+lvl(m)],['Couverture',m=>m.cov+' %'],['Rôle',m=>ROLE[m.role]||m.role],['Lieu',m=>m.loc],['Télétravail',m=>m.tt],['TJM',m=>m.tjm],['Durée',m=>m.dur],['Publiée',m=>fmt(m.pub)+' (il y a '+age(m.pub)+' j)'],['Vérification',m=>m.expired?'Expirée':m.ver?'Vérifiée':'Non vérifiée'],['Suivi',m=>tr(m.id).st],['Technologies',m=>m.stack],['Points forts',m=>(m.pros||[]).join(' · ')],['Écarts',m=>(m.gaps||[]).join(' · ')]];
  $('cmp').innerHTML=`<div class="scroll"><table><thead><tr><th></th>${r.map(m=>`<th>${esc(m.t)}</th>`).join('')}</tr></thead><tbody>${rows.map(([l,f])=>`<tr><th>${esc(l)}</th>${r.map(m=>`<td>${esc(f(m))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 }
+function all(){render();renderRel();renderStats();renderCmp()}
+
+function csv(){
+ const h=['Intitulé','Société','Rôle','Lieu','TJM','Durée','Publiée','Score','Couverture','Niveau','Vérification','Statut','Relance','Lien'];
+ const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+ return [h.map(q).join(';'),...M.map(m=>{const t=tr(m.id);return [m.t,m.co,ROLE[m.role]||m.role,m.loc,m.tjm,m.dur,fmt(m.pub),m.expired?'':m.score,m.cov+' %',lvl(m),m.expired?'Expirée':m.ver?'Vérifiée':'Non vérifiée',t.st,fmt(t.rl),m.url].map(q).join(';')})].join('\r\n');
+}
+$('csv').addEventListener('click',()=>{try{const b=new Blob(['﻿'+csv()],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='suivi-missions-centreon-'+iso(TODAY)+'.csv';document.body.appendChild(a);a.click();a.remove();$('csvok').textContent='Fichier CSV téléchargé.'}catch(e){$('csvok').textContent='Téléchargement impossible ici : utilisez « Copier le CSV ».'}});
+$('csvc').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(csv());$('csvok').textContent='CSV copié : collez-le dans Excel.'}catch(e){$('csvok').textContent='Copie bloquée par le navigateur.'}});
+
 let cur=null;
 function msgFor(m){
- return `Bonjour,\n\nVotre mission « ${m.t} » a retenu toute mon attention.\n\n${m.pitch}\n\nJe suis disponible à partir du [date]. Pourriez-vous me préciser ${m.qs.slice(0,2).map(x=>x.replace(/\s*\?$/,'').toLowerCase()).join(' et ')} ?\n\nVous trouverez mon CV en pièce jointe.\n\nBien cordialement,\nGhislain Tareau\nArchitecte Supervision / Expert Centreon\n[téléphone] – [email]`;
+ const qs=(m.qs||[]).slice(0,2).map(x=>x.replace(/\s*\?$/,'').replace(/^./,c=>c.toLowerCase()));
+ return `Bonjour,\n\nVotre mission « ${m.t} » a retenu toute mon attention.\n\n${m.pitch}\n\nMon CV détaillé est consultable ici : ${D.profile.cvUrl}\n\nJe suis disponible à partir du [date].${qs.length?` Pourriez-vous me préciser : ${qs.join(' ; ')} ?`:''}\n\nBien cordialement,\nGhislain Tareau\nArchitecte Supervision / Expert Centreon\n[téléphone] – [email]`;
 }
-function upMail(){const h='mailto:'+encodeURIComponent($('to').value.trim())+'?subject='+encodeURIComponent($('subj').value)+'&body='+encodeURIComponent($('msg').value);$('mail').href=h}
+function upMail(){$('mail').href='mailto:'+encodeURIComponent($('to').value.trim())+'?subject='+encodeURIComponent($('subj').value)+'&body='+encodeURIComponent($('msg').value)}
 function openDlg(id){
  cur=M.find(m=>m.id===id);if(!cur)return;
  $('dt').textContent='Candidature : '+cur.t;
@@ -291,19 +301,30 @@ function openDlg(id){
 }
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-apply]');if(b)openDlg(b.dataset.apply);
+ const z=e.target.closest('[data-snooze]');if(z){const t=tr(z.dataset.snooze),d=new Date(TODAY);d.setDate(d.getDate()+7);t.rl=iso(d);save();all()}
 });
 document.addEventListener('change',e=>{
  const t=e.target;
- if(t.dataset.st){store[t.dataset.st]=t.value;save()}
+ if(t.dataset.st){const x=tr(t.dataset.st);x.st=t.value;if(t.value==='Candidature envoyée'&&!x.rl){const d=new Date(TODAY);d.setDate(d.getDate()+7);x.rl=iso(d)}save();all()}
+ if(t.dataset.rl){tr(t.dataset.rl).rl=t.value;save();renderRel();renderCmp()}
  if(t.dataset.cmp){if(t.checked){if(sel.size>=3){t.checked=false;return}sel.add(t.dataset.cmp)}else sel.delete(t.dataset.cmp);renderCmp()}
 });
-['q','loc','sort','ver','exp'].forEach(i=>$(i).addEventListener('input',render));
+['q','loc','sort','ver','exp','role'].forEach(i=>$(i).addEventListener('input',render));
 ['to','subj','msg'].forEach(i=>$(i).addEventListener('input',upMail));
 $('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText('Objet : '+$('subj').value+'\n\n'+$('msg').value);$('okm').textContent='Message copié.'}catch(e){$('msg').select();$('okm').textContent='Copie bloquée : le texte est sélectionné, copiez-le avec Ctrl+C.'}});
 $('close').addEventListener('click',()=>{try{$('dlg').close()}catch(e){$('dlg').removeAttribute('open')}});
-$('plats').innerHTML=PLATS.map(p=>`<a class="plat" href="${esc(p[2])}" target="_blank" rel="noopener"><b>${esc(p[0])}</b><span>${esc(p[1])}</span></a>`).join('');
-$('leads').innerHTML=LEADS.map(l=>`<div class="lead"><h3>${esc(l[0])}</h3><p class="sm">${esc(l[1])}</p><a class="sm" href="${esc(l[2])}" target="_blank" rel="noopener">Ouvrir la source</a></div>`).join('');
-render();renderCmp();
+
+fetch('missions.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(d=>{
+ D=d;M=(d.missions||[]).map(m=>Object.assign(m,scoreOf(m)));
+ const P=d.profile||{},act=M.filter(m=>!m.expired);
+ $('prof').innerHTML=[`TJM cible : ${P.tjmTarget} €/j et plus`,`Zones : ${(P.zones||[]).join(', ')}`,`Télétravail : ${P.remote}`,`Durée : ${P.duration}`,`Rôles : ${(P.roles||[]).map(r=>ROLE[r]||r).join(', ')}`].map(x=>`<span>${esc(x)}</span>`).join('');
+ $('kpis').innerHTML=[[act.length,'missions actives'],[act.filter(m=>m.score>=70&&!m.block).length,'pertinentes (70+)'],[act.filter(isNew).length,'ajoutées ces 7 derniers jours'],[fmt(d.updated),'dernière mise à jour']].map(k=>`<div class="kpi"><b>${esc(k[0])}</b><span>${esc(k[1])}</span></div>`).join('');
+ $('loc').insertAdjacentHTML('beforeend',[...new Set(M.map(m=>m.loc))].sort().map(l=>`<option>${esc(l)}</option>`).join(''));
+ $('plats').innerHTML=(d.platforms||[]).map(p=>`<a class="plat" href="${esc(p[2])}" target="_blank" rel="noopener"><b>${esc(p[0])}</b><span>${esc(p[1])}</span></a>`).join('');
+ $('leads').innerHTML=(d.leads||[]).map(l=>`<div class="lead"><h3>${esc(l[0])}</h3><p class="sm">${esc(l[1])}</p><a class="sm" href="${esc(l[2])}" target="_blank" rel="noopener">Ouvrir la source</a></div>`).join('');
+ $('upd').textContent='Données mises à jour le '+fmt(d.updated)+'. Les annonces de plus de 14 jours sont peut-être pourvues. Aucune candidature n\'est envoyée automatiquement.';
+ all();
+}).catch(()=>{$('list').innerHTML='<div class="empty">Impossible de charger missions.json. Ouvrez la page depuis gtareau972.github.io/missions-centreon/.</div>'});
 }
 </script>
 </body>
